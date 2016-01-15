@@ -3,6 +3,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def index
+    @articles = Article.order "created_at DESC"
+  end
+
   def new
   end
 
