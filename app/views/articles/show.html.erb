@@ -4,6 +4,7 @@
 </p>
 <%= link_to 'Show all articles', articles_path %>
 <hr/>
+<h2>Comments:</h2>
 <% @article.comments.each do |comment| %>
 	<p>
 		<%= comment.body %>
@@ -15,6 +16,7 @@
 <% end %>
 
 <p>
+	Your comment:
 <%= form_for([@article, @article.comments.build]) do |f| %>
 	<% if @article && @article.errors.any? %>
 	<p>	
