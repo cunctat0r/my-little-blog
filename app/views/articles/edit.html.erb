@@ -1,6 +1,6 @@
 <h1>Edit article!</h1>
 
-<% if user_signed_in? %>
+
 	<%= form_for :article, url: article_path(@article), method: :put do |f| %>
 	<% if @article && @article.errors.any? %>
 	<p>	
@@ -23,8 +23,3 @@
 		<%= f.submit %> <br/>	
 	</p>
 	<% end %>
-<% else %>
-<p>
-	You should be logged in to edit.
-</p>
-<% end %>
