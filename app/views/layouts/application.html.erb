@@ -4,23 +4,29 @@
   <title>MyLittleBlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script data-require="jquery@*" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<% if user_signed_in? %>
+					Hello, <%= current_user.username %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
+				<% else %>
+					<%= link_to 'Sign in', new_user_session_path %> 
+				<% end %>
 
-<% if user_signed_in? %>
-	Hello, <%= current_user.username %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
-<% else %>
-	<%= link_to 'Sign in', new_user_session_path %> 
-<% end %>
+				  <p class="notice"><%= notice %></p>
+				  <p class="alert"><%= alert %></p>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+				<%= yield %>
+			</div>
+			
+		</div>
+	</div>
 </body>
 </html>
