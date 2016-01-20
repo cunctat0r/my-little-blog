@@ -1,32 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MyLittleBlog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script data-require="jquery@*" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-  <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<% if user_signed_in? %>
-					Hello, <%= current_user.username %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
-				<% else %>
-					<%= link_to 'Sign in', new_user_session_path %> 
-				<% end %>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	  <title>MyLittleBlog</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <script data-require="jquery@*" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	  <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	  <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="container">
+		<!-- Static navbar -->
+			<nav class="navbar navbar-default" role="navigation">
+			  <div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			      <span class="sr-only">Toggle navigation</span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			    </button>
+			    <a class="navbar-brand" href="/">Blog RoR</a>
+			  </div>
+			  <div class="navbar-collapse collapse">
+			    <ul class="nav navbar-nav">
+			      <li><a href="<%= articles_path %>">Articles</a></li>
+			      <li><a href="<%= new_article_path %>">New</a></li>			      		      
+			    </ul>			    
+				  <ul class="nav navbar-nav navbar-right">
+				  	<li>
+				  		<li><%= link_to 'Sign in', new_user_session_path %> </li>
+				  		<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %> </li>
+				  	</li>			    		
+			      </ul>
+			  </div>
+			  
+			  <!--/.nav-collapse -->
+			</nav>
+			<div class="row">
+				<div class="col-xs-12">
+					<% if user_signed_in? %>
+						Hello, <%= current_user.username %>
+					<% end %>
 
-				  <p class="notice"><%= notice %></p>
-				  <p class="alert"><%= alert %></p>
+					  <p class="notice"><%= notice %></p>
+					  <p class="alert"><%= alert %></p>
 
-				<%= yield %>
+					<%= yield %>
+				</div>
+				
 			</div>
-			
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>

@@ -7,12 +7,14 @@
 		<%= article.text %>
 	</p>
 	<p>
-		Created at <%= article.created_at %>
+		Created at <%= article.created_at %> by <%=  %>
 	</p>
 	<p>
-		<%= link_to 'Show', article_path(article) %> | 
-		<%= link_to 'Edit', edit_article_path(article) %> | 
+		<%= link_to 'Show', article_path(article) %> 
+		<% if user_signed_in? %>
+		| 	<%= link_to 'Edit', edit_article_path(article) %> | 
 		<%= link_to 'Destroy', article_path(article), method: :delete, data: {confirm: 'Do you really want to destroy it?'} %>
+		<% end %>
 	</p>
 	<hr/>
 <% end %>
