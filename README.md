@@ -3,3 +3,4 @@
 # make some corrections
 #
 # TODO: Model testing using shoulda-matchers
+# TODO use factory_girl
